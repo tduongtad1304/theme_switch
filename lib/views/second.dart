@@ -3,14 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:theme_switch/cubit/cubit.dart';
 
-class SecondPage extends StatefulWidget {
+class SecondPage extends StatelessWidget {
   const SecondPage({Key? key}) : super(key: key);
 
-  @override
-  State<SecondPage> createState() => _SecondPageState();
-}
-
-class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +18,22 @@ class _SecondPageState extends State<SecondPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            context.read<CounterCubit>().state.counterValue.toString(),
+            'Theme ' +
+                context
+                    .read<ThemeCubit>()
+                    .state
+                    .theme
+                    .toString()
+                    .split('.')
+                    .last
+                    .split(')')
+                    .first,
             style: Theme.of(context).textTheme.headline4,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            context.read<CounterCubit>().state.counterValue.toString(),
+            style: Theme.of(context).textTheme.headline5,
           ),
         ],
       )),

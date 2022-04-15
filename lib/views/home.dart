@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Switched Theme to ' +
                   context
-                      .watch<ThemeCubit>()
+                      .read<ThemeCubit>()
                       .state
                       .theme
                       .toString()
@@ -84,9 +84,25 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Click on the switch to change theme to ' +
                 (_isChanged ? 'LIGHT' : 'DARK')),
             const SizedBox(height: 16),
-            Text(
-              'Random value: ${context.read<CounterCubit>().state.counterValue}',
-              style: Theme.of(context).textTheme.headline6,
+            //just rebuild Text widget to see the value change when using StreamSubscription
+            // Text(
+            //   'Random value: ${context.read<CounterCubit>().state.counterValue}',
+            //   style: Theme.of(context).textTheme.headline6,
+            // ),
+
+            //just rebuild Text widget to see the value change when using BlocListeners
+            BlocListener<ThemeCubit, ThemeState>(
+              listener: (context, state) {
+                if (state.theme == AppTheme.light) {
+                  context.read<CounterCubit>().increment(80);
+                } else if (state.theme == AppTheme.dark) {
+                  context.read<CounterCubit>().decrement(70);
+                }
+              },
+              child: Text(
+                'Random value: ${context.read<CounterCubit>().state.counterValue}',
+                style: Theme.of(context).textTheme.headline6,
+              ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(

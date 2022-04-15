@@ -21,9 +21,13 @@ class MyApp extends StatelessWidget {
           create: (context) => ThemeCubit(),
         ),
         BlocProvider(
-          create: (context) =>
-              CounterCubit(themeCubit: BlocProvider.of<ThemeCubit>(context)),
+          create: (context) => CounterCubit(),
         ),
+        // BlocProvider(
+        //   create: (context) =>
+        //       CounterCubit(themeCubit: BlocProvider.of<ThemeCubit>(context)),
+        // ),
+        //for using StreamSubscription with instance of ThemeCubit
       ],
       child: BlocConsumer<ThemeCubit, ThemeState>(
         listener: (context, state) => debugPrint(
