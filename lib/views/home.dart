@@ -68,16 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Text(
               'Switched Theme to ' +
-                  context
-                      .read<ThemeCubit>()
-                      .state
-                      .theme
-                      .toString()
-                      .split('.')
-                      .last
-                      .split(')')
-                      .first
-                      .toUpperCase(),
+                  context.read<ThemeCubit>().state.enumToString(),
               style: Theme.of(context).textTheme.headline5,
             ),
             const SizedBox(height: 16),

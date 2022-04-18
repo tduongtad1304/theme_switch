@@ -18,16 +18,7 @@ class SecondPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Theme ' +
-                context
-                    .read<ThemeCubit>()
-                    .state
-                    .theme
-                    .toString()
-                    .split('.')
-                    .last
-                    .split(')')
-                    .first,
+            'Theme ' + context.read<ThemeCubit>().state.enumToString(),
             style: Theme.of(context).textTheme.headline4,
           ),
           const SizedBox(height: 16),

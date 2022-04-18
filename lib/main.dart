@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocConsumer<ThemeCubit, ThemeState>(
         listener: (context, state) => debugPrint(
-          'THEME HAS CHANGED TO ' +
-              state.toString().split('.').last.split(')').first.toUpperCase(),
+          'THEME HAS CHANGED TO ' + state.enumToString(),
         ),
         builder: (context, state) {
           return MaterialApp(
